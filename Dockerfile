@@ -10,12 +10,16 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     libicu-dev ca-certificates curl perl
 
-
 RUN mkdir /actions-runner
+RUN mkdir /home/github
 
 RUN groupadd -r github && useradd --no-log-init -r -g github github
+
 RUN chown github:github /actions-runner
+RUN chown github:github /home/github
+
 RUN chmod u+x /actions-runner
+RUN chmod u+x /home/github
 
 WORKDIR /actions-runner
 USER github
